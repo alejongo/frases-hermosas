@@ -1,8 +1,12 @@
 const fetchQuote = async () => {
-    const res = await fetch('https://api.breakingbadquotes.xyz/v1/quotes');
+    const res = await fetch('https://onnboltxrqmuojlnuusd.supabase.co/rest/v1/frases_table?select=*', {
+        headers: {
+            "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ubmJvbHR4cnFtdW9qbG51dXNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzU0MzI5ODYsImV4cCI6MTk5MTAwODk4Nn0.V0PW0xzykBW-80nIVqjspu2H243bYagiL3ouBoZawjg"
+        }
+    });
     const data = await res.json();
-    console.log(data[0])
-    return data[0];
+    const selectedData = Math.floor(Math.random() * data.length)
+    return data[selectedData];
 }
 
 
@@ -30,8 +34,8 @@ export const FrasesHermosas = async (element) => {
 
 
     const renderQuote = (quoteData) => {
-        quoteLabel.innerHTML = quoteData.quote;
-        authorLabel.innerHTML = quoteData.author;
+        quoteLabel.innerHTML = quoteData.frase;
+        //authorLabel.innerHTML = quoteData.author;
         element.replaceChildren(quoteLabel, authorLabel, nextQuoteButton);
     }
 
